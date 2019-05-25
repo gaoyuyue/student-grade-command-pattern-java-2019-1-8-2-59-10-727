@@ -25,3 +25,7 @@ Then: return student grade report
 Given: student grade report
 When: format report
 Then: return report string
+
+Given: student ids string
+When: parse
+Then: return student id list
