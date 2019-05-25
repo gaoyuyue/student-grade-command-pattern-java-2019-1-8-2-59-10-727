@@ -21,3 +21,7 @@ Then: return that grade infos
 Given: some student grade infos
 When: generate report
 Then: return student grade report
+
+Given: student grade report
+When: format report
+Then: return report string
