@@ -78,4 +78,11 @@ public class StudentGradeSystemTest {
         List<StudentGradeReport> actualInfos = studentGradeSystem.generateReport(studentGradeInfos);
         Assert.assertArrayEquals(expectInfos.toArray(), actualInfos.toArray());
     }
+
+    @Test
+    public void should_return_student_id_list_when_parse_student_ids_string() {
+        List<String> expectIds = Arrays.asList("201514620108", "201514620109");
+        List<String> actualIds = studentGradeSystem.parseStudentIds("201514620108, 201514620109");
+        Assert.assertArrayEquals(expectIds.toArray(), actualIds.toArray());
+    }
 }

@@ -1,6 +1,7 @@
 package com.tw;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,5 +44,9 @@ public class StudentGradeSystem {
                         item.getEnglishScore(),
                         item.getProgramScore()))
                 .collect(Collectors.toList());
+    }
+
+    public List<String> parseStudentIds(String ids) {
+        return Arrays.stream(ids.split(",")).map(String::trim).collect(Collectors.toList());
     }
 }
