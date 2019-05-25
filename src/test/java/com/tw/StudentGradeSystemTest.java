@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class StudentGradeSystemTest {
@@ -57,6 +56,26 @@ public class StudentGradeSystemTest {
         expectInfos.add(studentGradeInfo3);
 
         List<StudentGradeInfo> actualInfos = studentGradeSystem.find(Arrays.asList("201514620107", "201514620109"));
+        Assert.assertArrayEquals(expectInfos.toArray(), actualInfos.toArray());
+    }
+
+    @Test
+    public void should_return_student_grade_report_when_generate_student_grade_report() {
+        StudentGradeInfo studentGradeInfo1 = new StudentGradeInfo("张三", "201514620107", 75, 95, 80, 80);
+        StudentGradeInfo studentGradeInfo2 = new StudentGradeInfo("李四", "201514620108", 75, 95, 80, 80);
+        StudentGradeInfo studentGradeInfo3 = new StudentGradeInfo("王五", "201514620109", 75, 95, 80, 80);
+        studentGradeSystem.save(studentGradeInfo1);
+        studentGradeSystem.save(studentGradeInfo2);
+        studentGradeSystem.save(studentGradeInfo3);
+
+        List<StudentGradeReport> expectInfos = new ArrayList<>();
+        StudentGradeReport studentGradeReport1 = new StudentGradeReport("张三", 75, 95, 80, 80);
+        StudentGradeReport studentGradeReport2 = new StudentGradeReport("王五", 75, 95, 80, 80);
+        expectInfos.add(studentGradeReport1);
+        expectInfos.add(studentGradeReport2);
+
+        List<StudentGradeInfo> studentGradeInfos = studentGradeSystem.find(Arrays.asList("201514620107", "201514620109"));
+        List<StudentGradeReport> actualInfos = studentGradeSystem.generateReport(studentGradeInfos);
         Assert.assertArrayEquals(expectInfos.toArray(), actualInfos.toArray());
     }
 }

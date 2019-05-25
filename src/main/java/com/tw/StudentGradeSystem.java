@@ -33,4 +33,15 @@ public class StudentGradeSystem {
     public List<StudentGradeInfo> find(List<String> ids) {
         return studentGradeInfos.stream().filter(item -> ids.contains(item.getStudentId())).collect(Collectors.toList());
     }
+
+    public List<StudentGradeReport> generateReport(List<StudentGradeInfo> studentGradeInfos) {
+        return studentGradeInfos.stream()
+                .map(item -> new StudentGradeReport(
+                        item.getName(),
+                        item.getChineseScore(),
+                        item.getMathScore(),
+                        item.getEnglishScore(),
+                        item.getProgramScore()))
+                .collect(Collectors.toList());
+    }
 }
