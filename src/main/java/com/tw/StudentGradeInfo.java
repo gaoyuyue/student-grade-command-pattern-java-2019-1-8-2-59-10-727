@@ -1,8 +1,11 @@
 package com.tw;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class StudentGradeInfo {
+public class StudentGradeInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String studentId;
     private Integer chineseScore;
@@ -16,6 +19,33 @@ public class StudentGradeInfo {
         this.chineseScore = chineseScore;
         this.mathScore = mathScore;
         this.englishScore = englishScore;
+        this.programScore = programScore;
+    }
+
+    public StudentGradeInfo() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setChineseScore(Integer chineseScore) {
+        this.chineseScore = chineseScore;
+    }
+
+    public void setMathScore(Integer mathScore) {
+        this.mathScore = mathScore;
+    }
+
+    public void setEnglishScore(Integer englishScore) {
+        this.englishScore = englishScore;
+    }
+
+    public void setProgramScore(Integer programScore) {
         this.programScore = programScore;
     }
 

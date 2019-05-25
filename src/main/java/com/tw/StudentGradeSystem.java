@@ -1,5 +1,6 @@
 package com.tw;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class StudentGradeSystem {
     private final static String STUDENT_GRADE_INFO_FORMAT_REGEX = "([^，]+)，(\\w+)，语文：(\\d+)，数学：(\\d+)，英语：(\\d+)，编程：(\\d+)";
-    private List<StudentGradeInfo> studentGradeInfos = new ArrayList<>();
 
     public StudentGradeInfo parseStudent(String studentGradeInfoString) {
         Matcher matcher = Pattern.compile(STUDENT_GRADE_INFO_FORMAT_REGEX).matcher(studentGradeInfoString);
@@ -24,14 +24,27 @@ public class StudentGradeSystem {
     }
 
     public boolean save(StudentGradeInfo studentGradeInfo) {
-        boolean isExisted = studentGradeInfos.stream().anyMatch(item -> item.getStudentId().equals(studentGradeInfo.getStudentId()));
-        if (isExisted) {
+        try {
+            List<StudentGradeInfo> studentGradeInfos = FileUtil.getAll();
+            boolean isExisted = studentGradeInfos.stream().anyMatch(item -> item.getStudentId().equals(studentGradeInfo.getStudentId()));
+            if (isExisted) {
+                return false;
+            }
+            studentGradeInfos.add(studentGradeInfo);
+            FileUtil.save(studentGradeInfos);
+        } catch (IOException e) {
             return false;
         }
-        return studentGradeInfos.add(studentGradeInfo);
+        return true;
     }
 
     public List<StudentGradeInfo> find(List<String> ids) {
+        List<StudentGradeInfo> studentGradeInfos = new ArrayList<>();
+        try {
+            studentGradeInfos = FileUtil.getAll();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return studentGradeInfos.stream().filter(item -> ids.contains(item.getStudentId())).collect(Collectors.toList());
     }
 

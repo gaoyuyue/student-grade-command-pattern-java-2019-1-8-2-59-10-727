@@ -1,9 +1,11 @@
 package com.tw;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +15,11 @@ public class StudentGradeSystemTest {
     @Before
     public void before() {
         studentGradeSystem = new StudentGradeSystem();
+    }
+
+    @After
+    public void after() {
+        new File("student_grade_infos.json").delete();
     }
 
     @Test
