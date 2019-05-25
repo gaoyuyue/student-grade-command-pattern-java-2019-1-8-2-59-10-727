@@ -12,4 +12,12 @@ public class StudentGradeSystemTest {
         StudentGradeInfo actualInfo = studentGradeSystem.parseStudent(studentGradeInfoString);
         Assert.assertEquals(expectInfo, actualInfo);
     }
+
+    @Test
+    public void should_return_null_when_parse_not_correct_student_grade_format_string() {
+        String studentGradeInfoString = "张三，201514620108，语文> 75，数学> 95，英语> 80，编程> 80";
+        StudentGradeSystem studentGradeSystem = new StudentGradeSystem();
+        StudentGradeInfo actualInfo = studentGradeSystem.parseStudent(studentGradeInfoString);
+        Assert.assertNull(actualInfo);
+    }
 }

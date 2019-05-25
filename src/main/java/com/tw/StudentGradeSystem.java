@@ -8,7 +8,9 @@ public class StudentGradeSystem {
 
     public StudentGradeInfo parseStudent(String studentGradeInfoString) {
         Matcher matcher = Pattern.compile(STUDENT_GRADE_INFO_FORMAT_REGEX).matcher(studentGradeInfoString);
-        matcher.matches();
+        if (!matcher.matches()) {
+            return null;
+        }
         return new StudentGradeInfo(matcher.group(1), matcher.group(2),
                 Integer.parseInt(matcher.group(3)),
                 Integer.parseInt(matcher.group(4)),
