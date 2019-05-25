@@ -17,4 +17,8 @@ public class StudentGradeSystem {
                 Integer.parseInt(matcher.group(5)),
                 Integer.parseInt(matcher.group(6)));
     }
+
+    public boolean save(StudentGradeInfo studentGradeInfo) {
+        return true;
+    }
 }
