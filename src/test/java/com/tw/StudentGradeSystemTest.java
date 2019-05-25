@@ -31,4 +31,11 @@ public class StudentGradeSystemTest {
         StudentGradeInfo studentGradeInfo = new StudentGradeInfo("张三", "201514620108", 75, 95, 80, 80);
         Assert.assertTrue(studentGradeSystem.save(studentGradeInfo));
     }
+
+    @Test
+    public void should_return_false_when_save_a_existed_student_grade_info() {
+        StudentGradeInfo studentGradeInfo = new StudentGradeInfo("张三", "201514620108", 75, 95, 80, 80);
+        Assert.assertTrue(studentGradeSystem.save(studentGradeInfo));
+        Assert.assertFalse(studentGradeSystem.save(studentGradeInfo));
+    }
 }

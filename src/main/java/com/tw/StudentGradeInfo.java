@@ -19,6 +19,10 @@ public class StudentGradeInfo {
         this.programScore = programScore;
     }
 
+    public String getStudentId() {
+        return studentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
